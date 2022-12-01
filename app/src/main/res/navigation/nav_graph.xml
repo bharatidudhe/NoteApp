@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ai.noteapp.LoginFragment"
+        android:name="com.ai.noteapp.features.login.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.ai.noteapp.RegisterFragment"
+        android:name="com.ai.noteapp.features.login.view.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.ai.noteapp.MainFragment"
+        android:name="com.ai.noteapp.features.note.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.ai.noteapp.NotesFragment"
+        android:name="com.ai.noteapp.features.note.view.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" />
 </navigation>

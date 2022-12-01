@@ -1,4 +1,4 @@
-package com.ai.noteapp
+package com.ai.noteapp.features.note.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.ai.noteapp.features.note.adapter.NoteAdapter
+import com.ai.noteapp.features.note.viewmodel.NoteViewModel
+import com.ai.noteapp.R
 import com.ai.noteapp.databinding.FragmentMainBinding
 import com.ai.noteapp.models.NoteResponse
 import com.ai.noteapp.utils.NetworkResult
@@ -24,7 +27,7 @@ class MainFragment : Fragment() {
     val binding get() = _binding!!
 
     private val noteViewModel by viewModels<NoteViewModel>()
-    lateinit var noteAdapter :NoteAdapter
+    lateinit var noteAdapter : NoteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,12 +68,32 @@ class MainFragment : Fragment() {
 
             }
         })
+
+        noteViewModel.statusLiveData.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.isVisible = false
+            when(it){
+                is NetworkResult.Success -> {
+                    noteViewModel.getNote()
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+
+            }
+        })
     }
-    private fun onNoteClicked(noteResponse: NoteResponse){
-        val bundle = Bundle().apply {
-            putString("note",Gson().toJson(noteResponse))
+    private fun onNoteClicked(noteResponse: NoteResponse,isdelete:Boolean){
+        if (isdelete){
+            noteViewModel.deleteNote(noteResponse._id)
+        }else {
+            val bundle = Bundle().apply {
+                putString("note", Gson().toJson(noteResponse))
+            }
+            findNavController().navigate(R.id.action_mainFragment_to_notesFragment, bundle)
         }
-    findNavController().navigate(R.id.action_mainFragment_to_notesFragment,bundle)
     }
 
     override fun onDestroyView() {

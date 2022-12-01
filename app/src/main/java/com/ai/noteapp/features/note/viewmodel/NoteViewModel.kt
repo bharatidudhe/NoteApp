@@ -1,4 +1,4 @@
-package com.ai.noteapp
+package com.ai.noteapp.features.note.viewmodel
 
 import android.text.TextUtils
 import androidx.lifecycle.ViewModel

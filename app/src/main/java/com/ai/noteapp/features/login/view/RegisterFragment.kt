@@ -1,4 +1,4 @@
-package com.ai.noteapp
+package com.ai.noteapp.features.login.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.ai.noteapp.R
 import com.ai.noteapp.databinding.FragmentRegisterBinding
 import com.ai.noteapp.models.userRequest
 import com.ai.noteapp.utils.NetworkResult
 import com.ai.noteapp.utils.TokenManager
+import com.ai.noteapp.features.login.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

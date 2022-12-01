@@ -1,4 +1,4 @@
-package com.ai.noteapp
+package com.ai.noteapp.features.login.viewmodel
 
 import android.text.TextUtils
 import android.util.Patterns

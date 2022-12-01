@@ -1,4 +1,4 @@
-package com.ai.noteapp
+package com.ai.noteapp.features.note.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.ai.noteapp.features.note.viewmodel.NoteViewModel
 import com.ai.noteapp.databinding.FragmentNotesBinding
 import com.ai.noteapp.models.NoteRequest
 import com.ai.noteapp.models.NoteResponse
@@ -49,11 +50,6 @@ class NotesFragment : Fragment() {
             }
         }
 
-        binding.btnDelete.setOnClickListener {
-            note?.let {
-                noteViewModel.deleteNote(note!!._id)
-            }
-        }
         setInialData()
         bindObserver()
     }
